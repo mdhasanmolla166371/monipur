@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Monipur - আমার মনিপুর</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="/_sdk/data_sdk.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&amp;family=Source+Sans+3:wght@400;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gov: {
+                50: "#f0fdf4",
+                100: "#dcfce7",
+                200: "#bbf7d0",
+                300: "#86efac",
+                400: "#4ade80",
+                500: "#16a34a",
+                600: "#15803d",
+                700: "#166534",
+                800: "#14532d",
+                900: "#052e16",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        font-family: "Source Sans 3", sans-serif;
+      }
+      .bn-text {
+        font-family: "Noto Sans Bengali", sans-serif;
+      }
+      .hero-bg {
+        background: linear-gradient(
+          135deg,
+          #166534 0%,
+          #15803d 40%,
+          #16a34a 70%,
+          #4ade80 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .card-hover {
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      }
+      .nav-link {
+        transition: background 0.2s;
+      }
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .fade-in {
+        animation: fadeIn 0.4s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .tab-active {
+        border-bottom: 3px solid #16a34a;
+        color: #166534;
+        font-weight: 700;
+      }
+    </style>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="h-full bg-gray-50 overflow-auto">
+    <div id="app" class="w-full min-h-full flex flex-col">
+      <!-- Header -->
+      <header
+        id="site-header"
+        class="bg-gov-700 text-white shadow-lg sticky top-0 z-50"
+      >
+        <div
+          class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 bg-white rounded-full flex items-center justify-center"
+            >
+              <svg viewbox="0 0 40 40" class="w-7 h-7">
+                <circle cx="20" cy="20" r="18" fill="#16a34a" />
+                <path
+                  d="M20 8c-2 4-6 6-6 12 0 4 2.7 7.2 6 8 3.3-.8 6-4 6-8 0-6-4-8-6-12z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <div>
+              <h1 id="header-title" class="text-lg font-bold leading-tight">
+                My Monipur
+              </h1>
+              <p
+                id="header-subtitle"
+                class="bn-text text-xs text-gov-200 leading-tight"
+              >
+                আমার মনিপুর
+              </p>
+            </div>
+          </div>
+          <!-- Desktop Nav -->
+          <nav id="desktop-nav" class="hidden md:flex items-center gap-1">
+            <button
+              onclick="showPage('home')"
+              class="nav-link px-3 py-2 rounded text-sm font-semibold"
+            >
+              Home
+            </button>
+            <button
+              onclick="showPage('mosques')"
+              class="nav-link px-3 py-2 rounded text-sm font-semibold"
+            >
+              Mosques
+            </button>
+            <button
+              onclick="showPage('schools')"
+              class="nav-link px-3 py-2 rounded text-sm font-semibold"
+            >
+              Schools
+            </button>
+            <button
+              onclick="showPage('madrasas')"
+              class="nav-link px-3 py-2 rounded text-sm font-semibold"
+            >
+              Madrasas
+            </button>
+            <button
+              onclick="showPage('gallery')"
+              class="nav-link px-3 py-2 rounded text-sm font-semibold"
+            >
+              Gallery
+            </button>
+            <button
+              onclick="showPage('add')"
+              class="nav-link px-3 py-2 rounded text-sm font-semibold bg-white/10"
+            >
+              + Add
+            </button>
+          </nav>
+          <!-- Mobile Menu Button -->
+          <button
+            id="menu-btn"
+            onclick="toggleMenu()"
+            class="md:hidden p-2 rounded hover:bg-white/10"
+          >
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <!-- Mobile Nav -->
+        <div
+          id="mobile-nav"
+          class="hidden md:hidden border-t border-white/20 bg-gov-800"
+        >
+          <button
+            onclick="
+              showPage('home');
+              toggleMenu();
+            "
+            class="w-full text-left px-6 py-3 text-sm font-semibold hover:bg-white/10 border-b border-white/10"
+          >
+            🏠 Home
+          </button>
+          <button
+            onclick="
+              showPage('mosques');
+              toggleMenu();
+            "
+            class="w-full text-left px-6 py-3 text-sm font-semibold hover:bg-white/10 border-b border-white/10"
+          >
+            🕌 Mosques
+          </button>
+          <button
+            onclick="
+              showPage('schools');
+              toggleMenu();
+            "
+            class="w-full text-left px-6 py-3 text-sm font-semibold hover:bg-white/10 border-b border-white/10"
+          >
+            🏫 Schools
+          </button>
+          <button
+            onclick="
+              showPage('madrasas');
+              toggleMenu();
+            "
+            class="w-full text-left px-6 py-3 text-sm font-semibold hover:bg-white/10 border-b border-white/10"
+          >
+            📖 Madrasas
+          </button>
+          <button
+            onclick="
+              showPage('gallery');
+              toggleMenu();
+            "
+            class="w-full text-left px-6 py-3 text-sm font-semibold hover:bg-white/10 border-b border-white/10"
+          >
+            🖼️ Gallery
+          </button>
+          <button
+            onclick="
+              showPage('add');
+              toggleMenu();
+            "
+            class="w-full text-left px-6 py-3 text-sm font-semibold hover:bg-white/10"
+          >
+            ➕ Add Institution
+          </button>
+        </div>
+      </header>
+      <!-- Main Content -->
+      <main class="flex-1 w-full">
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page fade-in">
+          <!-- Hero -->
+          <section
+            class="hero-bg text-white py-16 md:py-24 px-4 text-center relative z-10"
+          >
+            <h2
+              id="hero-heading"
+              class="text-3xl md:text-5xl font-black mb-3 drop-shadow-lg"
+            >
+              Welcome to Monipur
+            </h2>
+            <p
+              id="hero-subheading"
+              class="text-lg md:text-xl text-white/90 font-semibold"
+            >
+              Homna Thana, Cumilla
+            </p>
+            <div
+              class="mt-6 inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2 text-sm"
+            >
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+              <span>Cumilla District, Chattogram Division</span>
+            </div>
+          </section>
+          <!-- Weather Widget -->
+          <section class="max-w-7xl mx-auto px-4 -mt-8 relative z-20 mb-8">
+            <div
+              class="bg-white rounded-xl shadow-lg p-4 md:p-6 flex flex-wrap items-center gap-4 md:gap-8"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center"
+                >
+                  <i data-lucide="sun" class="w-7 h-7 text-yellow-500"></i>
+                </div>
+                <div>
+                  <p class="text-2xl font-bold text-gray-800">32°C</p>
+                  <p class="text-xs text-gray-500">Partly Cloudy</p>
+                </div>
+              </div>
+              <div class="flex gap-6 text-sm text-gray-600">
+                <div>
+                  <i
+                    data-lucide="droplets"
+                    class="w-4 h-4 inline text-blue-400"
+                  ></i>
+                  78%
+                </div>
+                <div>
+                  <i
+                    data-lucide="wind"
+                    class="w-4 h-4 inline text-gray-400"
+                  ></i>
+                  12 km/h
+                </div>
+              </div>
+              <div class="ml-auto text-xs text-gray-400">
+                <i data-lucide="clock" class="w-3 h-3 inline"></i> Updated:
+                Today
+              </div>
+            </div>
+          </section>
+          <!-- Stats Grid -->
+          <section class="max-w-7xl mx-auto px-4 mb-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div
+                class="card-hover bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center cursor-pointer"
+                onclick="showPage('mosques')"
+              >
+                <div class="text-3xl mb-2">🕌</div>
+                <p id="stat-mosques" class="text-2xl font-bold text-gov-700">
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-1">Mosques</p>
+              </div>
+              <div
+                class="card-hover bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center cursor-pointer"
+                onclick="showPage('schools')"
+              >
+                <div class="text-3xl mb-2">🏫</div>
+                <p id="stat-schools" class="text-2xl font-bold text-gov-700">
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-1">Schools</p>
+              </div>
+              <div
+                class="card-hover bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center cursor-pointer"
+                onclick="showPage('madrasas')"
+              >
+                <div class="text-3xl mb-2">📖</div>
+                <p id="stat-madrasas" class="text-2xl font-bold text-gov-700">
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-1">Madrasas</p>
+              </div>
+              <div
+                class="card-hover bg-white rounded-xl p-5 shadow-sm border border-gray-100 text-center"
+              >
+                <div class="text-3xl mb-2">👥</div>
+                <p class="text-2xl font-bold text-gov-700">~5,000</p>
+                <p class="text-xs text-gray-500 mt-1">Population</p>
+              </div>
+            </div>
+          </section>
+          <!-- About Section -->
+          <section class="max-w-7xl mx-auto px-4 mb-10">
+            <div
+              class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8"
+            >
+              <h3
+                class="text-xl font-bold text-gov-700 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="info" class="w-5 h-5"></i> About Monipur
+              </h3>
+              <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                Monipur is a historic village located in Homna Thana under
+                Cumilla District, Chattogram Division, Bangladesh. The village
+                is known for its rich cultural heritage, educational
+                institutions, and strong community bonds. With numerous mosques,
+                schools, and madrasas, Monipur stands as a model of community
+                development in rural Bangladesh.
+              </p>
+              <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                <div class="bg-gov-50 rounded-lg p-3">
+                  <span class="font-semibold text-gov-700">Thana:</span> Homna
+                </div>
+                <div class="bg-gov-50 rounded-lg p-3">
+                  <span class="font-semibold text-gov-700">District:</span>
+                  Cumilla
+                </div>
+                <div class="bg-gov-50 rounded-lg p-3">
+                  <span class="font-semibold text-gov-700">Division:</span>
+                  Chattogram
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Quick Links -->
+          <section class="max-w-7xl mx-auto px-4 mb-10">
+            <h3 class="text-lg font-bold text-gray-800 mb-4">
+              Explore Monipur
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div
+                class="card-hover bg-gradient-to-br from-gov-600 to-gov-700 rounded-xl p-6 text-white cursor-pointer"
+                onclick="showPage('mosques')"
+              >
+                <h4 class="font-bold text-lg mb-1">Mosques &amp; Worship</h4>
+                <p class="text-white/80 text-sm">
+                  View all mosques in the village
+                </p>
+              </div>
+              <div
+                class="card-hover bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 text-white cursor-pointer"
+                onclick="showPage('schools')"
+              >
+                <h4 class="font-bold text-lg mb-1">Education</h4>
+                <p class="text-white/80 text-sm">
+                  Primary schools and institutions
+                </p>
+              </div>
+              <div
+                class="card-hover bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl p-6 text-white cursor-pointer"
+                onclick="showPage('madrasas')"
+              >
+                <h4 class="font-bold text-lg mb-1">Islamic Education</h4>
+                <p class="text-white/80 text-sm">
+                  Madrasas (Aliya &amp; Women's)
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- INSTITUTION LIST PAGES -->
+        <div id="page-mosques" class="page hidden fade-in">
+          <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex items-center justify-between mb-6">
+              <h2
+                class="text-2xl font-bold text-gov-700 flex items-center gap-2"
+              >
+                🕌 Mosques
+              </h2>
+              <button
+                onclick="
+                  showPage('add');
+                  document.getElementById('form-type').value = 'mosque';
+                "
+                class="bg-gov-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gov-700 transition"
+              >
+                + Add Mosque
+              </button>
+            </div>
+            <div id="mosques-list" class="space-y-3">
+              <p class="text-gray-500 text-center py-8">
+                No mosques added yet. Click "+ Add Mosque" to add one.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="page-schools" class="page hidden fade-in">
+          <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex items-center justify-between mb-6">
+              <h2
+                class="text-2xl font-bold text-gov-700 flex items-center gap-2"
+              >
+                🏫 Primary Schools
+              </h2>
+              <button
+                onclick="
+                  showPage('add');
+                  document.getElementById('form-type').value = 'school';
+                "
+                class="bg-gov-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gov-700 transition"
+              >
+                + Add School
+              </button>
+            </div>
+            <div id="schools-list" class="space-y-3">
+              <p class="text-gray-500 text-center py-8">
+                No schools added yet. Click "+ Add School" to add one.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="page-madrasas" class="page hidden fade-in">
+          <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex items-center justify-between mb-6">
+              <h2
+                class="text-2xl font-bold text-gov-700 flex items-center gap-2"
+              >
+                📖 Madrasas
+              </h2>
+              <button
+                onclick="
+                  showPage('add');
+                  document.getElementById('form-type').value = 'madrasa';
+                "
+                class="bg-gov-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gov-700 transition"
+              >
+                + Add Madrasa
+              </button>
+            </div>
+            <div id="madrasas-list" class="space-y-3">
+              <p class="text-gray-500 text-center py-8">
+                No madrasas added yet. Click "+ Add Madrasa" to add one.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- GALLERY PAGE -->
+        <div id="page-gallery" class="page hidden fade-in">
+          <div class="max-w-7xl mx-auto px-4 py-8">
+            <h2
+              class="text-2xl font-bold text-gov-700 mb-6 flex items-center gap-2"
+            >
+              🖼️ Village Gallery
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div
+                class="aspect-square bg-gradient-to-br from-gov-200 to-gov-300 rounded-xl flex items-center justify-center text-gov-700"
+              >
+                <div class="text-center">
+                  <i data-lucide="image" class="w-8 h-8 mx-auto mb-2"></i>
+                  <p class="text-xs">Village Landscape</p>
+                </div>
+              </div>
+              <div
+                class="aspect-square bg-gradient-to-br from-blue-200 to-blue-300 rounded-xl flex items-center justify-center text-blue-700"
+              >
+                <div class="text-center">
+                  <i data-lucide="image" class="w-8 h-8 mx-auto mb-2"></i>
+                  <p class="text-xs">Local Market</p>
+                </div>
+              </div>
+              <div
+                class="aspect-square bg-gradient-to-br from-amber-200 to-amber-300 rounded-xl flex items-center justify-center text-amber-700"
+              >
+                <div class="text-center">
+                  <i data-lucide="image" class="w-8 h-8 mx-auto mb-2"></i>
+                  <p class="text-xs">Community Events</p>
+                </div>
+              </div>
+              <div
+                class="aspect-square bg-gradient-to-br from-purple-200 to-purple-300 rounded-xl flex items-center justify-center text-purple-700"
+              >
+                <div class="text-center">
+                  <i data-lucide="image" class="w-8 h-8 mx-auto mb-2"></i>
+                  <p class="text-xs">Mosque Architecture</p>
+                </div>
+              </div>
+              <div
+                class="aspect-square bg-gradient-to-br from-rose-200 to-rose-300 rounded-xl flex items-center justify-center text-rose-700"
+              >
+                <div class="text-center">
+                  <i data-lucide="image" class="w-8 h-8 mx-auto mb-2"></i>
+                  <p class="text-xs">School Activities</p>
+                </div>
+              </div>
+              <div
+                class="aspect-square bg-gradient-to-br from-teal-200 to-teal-300 rounded-xl flex items-center justify-center text-teal-700"
+              >
+                <div class="text-center">
+                  <i data-lucide="image" class="w-8 h-8 mx-auto mb-2"></i>
+                  <p class="text-xs">Harvest Season</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-gray-400 text-sm mt-6">
+              Gallery images coming soon. Upload photos to showcase village
+              life.
+            </p>
+          </div>
+        </div>
+        <!-- ADD INSTITUTION PAGE -->
+        <div id="page-add" class="page hidden fade-in">
+          <div class="max-w-2xl mx-auto px-4 py-8">
+            <h2 class="text-2xl font-bold text-gov-700 mb-2">
+              Add New Institution
+            </h2>
+            <p class="text-gray-500 text-sm mb-6">
+              Fill in the details below to add a new institution to the Monipur
+              database.
+            </p>
+            <form
+              id="add-form"
+              class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-5"
+            >
+              <div>
+                <label
+                  for="form-type"
+                  class="block text-sm font-semibold text-gray-700 mb-1"
+                  >Institution Type *</label
+                >
+                <select
+                  id="form-type"
+                  required
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none"
+                >
+                  <option value="">Select Type</option>
+                  <option value="mosque">Mosque (মসজিদ)</option>
+                  <option value="school">
+                    Primary School (প্রাথমিক বিদ্যালয়)
+                  </option>
+                  <option value="madrasa">Madrasa (মাদ্রাসা)</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="form-name"
+                  class="block text-sm font-semibold text-gray-700 mb-1"
+                  >Name (English) *</label
+                >
+                <input
+                  type="text"
+                  id="form-name"
+                  required
+                  placeholder="e.g. Monipur Central Mosque"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none"
+                />
+              </div>
+              <div>
+                <label
+                  for="form-name-bn"
+                  class="block text-sm font-semibold text-gray-700 mb-1"
+                  >Name (Bengali)</label
+                >
+                <input
+                  type="text"
+                  id="form-name-bn"
+                  placeholder="e.g. মনিপুর কেন্দ্রীয় মসজিদ"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bn-text focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="form-established"
+                    class="block text-sm font-semibold text-gray-700 mb-1"
+                    >Year Established</label
+                  >
+                  <input
+                    type="text"
+                    id="form-established"
+                    placeholder="e.g. 1985"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="form-ward"
+                    class="block text-sm font-semibold text-gray-700 mb-1"
+                    >Ward Number *</label
+                  >
+                  <select
+                    id="form-ward"
+                    required
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none"
+                  >
+                    <option value="">Select Ward</option>
+                    <option value="1">Ward 1</option>
+                    <option value="2">Ward 2</option>
+                    <option value="3">Ward 3</option> 
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label
+                  for="form-para"
+                  class="block text-sm font-semibold text-gray-700 mb-1"
+                  >Para (Neighborhood) *</label
+                >
+                <select
+                  id="form-para"
+                  required
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none"
+                >
+                  <option value="">Select Para</option>
+                  <option value="Uttar Para">Uttar Para (উত্তর পাড়া)</option>
+                  <option value="Dakkhin Para">
+                    Dakkhin Para (দক্ষিণ পাড়া)
+                  </option>
+                  <option value="Purba Para">Purba Para (পূর্ব পাড়া)</option>
+                  <option value="Paschim Para">
+                    Paschim Para (পশ্চিম পাড়া)
+                  </option>
+                  <option value="Majhi Para">Majhi Para (মাঝি পাড়া)</option>
+                  <option value="Bazar Para">Bazar Para (বাজার পাড়া)</option>
+                  <option value="School Para">School Para (স্কুল পাড়া)</option>
+                  <option value="Mosque Para">Mosque Para (মসজিদ পাড়া)</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="form-desc"
+                  class="block text-sm font-semibold text-gray-700 mb-1"
+                  >Description</label
+                >
+                <textarea
+                  id="form-desc"
+                  rows="3"
+                  placeholder="Brief description of the institution..."
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-gov-500 focus:border-gov-500 outline-none resize-none"
+                ></textarea>
+              </div>
+              <div class="flex gap-3 pt-2">
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="flex-1 bg-gov-600 text-white py-3 rounded-lg font-semibold hover:bg-gov-700 transition flex items-center justify-center gap-2"
+                >
+                  <i data-lucide="plus-circle" class="w-4 h-4"></i> Add
+                  Institution
+                </button>
+                <button
+                  type="button"
+                  onclick="showPage('home')"
+                  class="px-6 py-3 border border-gray-300 rounded-lg text-gray-600 font-semibold hover:bg-gray-50 transition"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div
+                id="form-message"
+                class="hidden text-center py-3 rounded-lg text-sm font-semibold"
+              ></div>
+            </form>
+          </div>
+        </div>
+      </main>
+      <!-- Footer -->
+      <footer class="bg-gov-800 text-white py-6 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto text-center">
+          <div class="flex justify-center gap-4 mb-3">
+            <a
+              href="#"
+              class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              ><i data-lucide="facebook" class="w-4 h-4"></i
+            ></a>
+            <a
+              href="#"
+              class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              ><i data-lucide="twitter" class="w-4 h-4"></i
+            ></a>
+            <a
+              href="#"
+              class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+              ><i data-lucide="mail" class="w-4 h-4"></i
+            ></a>
+          </div>
+          <p id="footer-text" class="text-sm text-white/70">
+            © 2024 My Monipur. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script>
+      // State
+      let allData = [];
+      let currentPage = "home";
+
+      // Navigation
+      function showPage(page) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.add("hidden"));
+        const target = document.getElementById("page-" + page);
+        if (target) {
+          target.classList.remove("hidden");
+          target.classList.remove("fade-in");
+          void target.offsetWidth;
+          target.classList.add("fade-in");
+        }
+        currentPage = page;
+      }
+
+      function toggleMenu() {
+        document.getElementById("mobile-nav").classList.toggle("hidden");
+      }
+
+      // Render institution lists
+      function renderList(type, containerId) {
+        const container = document.getElementById(containerId);
+        const items = allData.filter((d) => d.type === type);
+        if (items.length === 0) {
+          container.innerHTML = `<p class="text-gray-500 text-center py-8">No ${type}s added yet.</p>`;
+          return;
+        }
+        container.innerHTML = `
+        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="bg-gov-50 text-gov-700">
+              <tr>
+                <th class="px-4 py-3 text-left font-semibold">#</th>
+                <th class="px-4 py-3 text-left font-semibold">Name</th>
+                <th class="px-4 py-3 text-left font-semibold hidden md:table-cell">Est.</th>
+                <th class="px-4 py-3 text-left font-semibold">Ward</th>
+                <th class="px-4 py-3 text-left font-semibold hidden md:table-cell">Para</th>
+                <th class="px-4 py-3 text-left font-semibold">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items
+                .map(
+                  (item, i) => `
+                <tr class="border-t border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 text-gray-500">${i + 1}</td>
+                  <td class="px-4 py-3 font-semibold text-gray-800">
+                    ${item.name}
+                    ${item.name_bn ? `<br><span class="bn-text text-xs text-gray-500">${item.name_bn}</span>` : ""}
+                  </td>
+                  <td class="px-4 py-3 text-gray-600 hidden md:table-cell">${item.established || "—"}</td>
+                  <td class="px-4 py-3 text-gray-600">${item.ward}</td>
+                  <td class="px-4 py-3 text-gray-600 hidden md:table-cell">${item.para}</td>
+                  <td class="px-4 py-3">
+                    <button onclick="deleteItem('${item.__backendId}')" class="text-red-500 hover:text-red-700 text-xs font-semibold">Delete</button>
+                  </td>
+                </tr>
+              `,
+                )
+                .join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+      }
+
+      function updateUI() {
+        renderList("mosque", "mosques-list");
+        renderList("school", "schools-list");
+        renderList("madrasa", "madrasas-list");
+        // Update stats
+        document.getElementById("stat-mosques").textContent = allData.filter(
+          (d) => d.type === "mosque",
+        ).length;
+        document.getElementById("stat-schools").textContent = allData.filter(
+          (d) => d.type === "school",
+        ).length;
+        document.getElementById("stat-madrasas").textContent = allData.filter(
+          (d) => d.type === "madrasa",
+        ).length;
+      }
+
+      // Delete
+      let deleteTarget = null;
+      async function deleteItem(backendId) {
+        const item = allData.find((d) => d.__backendId === backendId);
+        if (!item) return;
+        const result = await window.dataSdk.delete(item);
+        if (!result.isOk) {
+          showFormMessage("Failed to delete. Please try again.", false);
+        }
+      }
+
+      // Form
+      function showFormMessage(msg, success) {
+        const el = document.getElementById("form-message");
+        el.classList.remove(
+          "hidden",
+          "bg-green-100",
+          "text-green-700",
+          "bg-red-100",
+          "text-red-700",
+        );
+        el.classList.add(
+          success ? "bg-green-100" : "bg-red-100",
+          success ? "text-green-700" : "text-red-700",
+        );
+        el.textContent = msg;
+        if (success) setTimeout(() => el.classList.add("hidden"), 3000);
+      }
+
+      document
+        .getElementById("add-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          if (allData.length >= 999) {
+            showFormMessage(
+              "Maximum limit of 999 records reached. Please delete some items first.",
+              false,
+            );
+            return;
+          }
+          const btn = document.getElementById("submit-btn");
+          btn.disabled = true;
+          btn.innerHTML =
+            '<span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span> Saving...';
+
+          const record = {
+            type: document.getElementById("form-type").value,
+            name: document.getElementById("form-name").value,
+            name_bn: document.getElementById("form-name-bn").value,
+            established: document.getElementById("form-established").value,
+            ward: document.getElementById("form-ward").value,
+            para: document.getElementById("form-para").value,
+            description: document.getElementById("form-desc").value,
+            created_at: new Date().toISOString(),
+          };
+
+          const result = await window.dataSdk.create(record);
+          btn.disabled = false;
+          btn.innerHTML =
+            '<i data-lucide="plus-circle" class="w-4 h-4"></i> Add Institution';
+          lucide.createIcons();
+
+          if (result.isOk) {
+            showFormMessage("Institution added successfully!", true);
+            this.reset();
+          } else {
+            showFormMessage("Failed to save. Please try again.", false);
+          }
+        });
+
+      // Data SDK
+      const dataHandler = {
+        onDataChanged(data) {
+          allData = data;
+          updateUI();
+        },
+      };
+
+      // Element SDK
+      const defaultConfig = {
+        site_title: "My Monipur",
+        site_subtitle: "আমার মনিপুর",
+        hero_heading: "Welcome to Monipur",
+        hero_subheading: "Homna Thana, Cumilla",
+        footer_text: "© 2024 My Monipur. All rights reserved.",
+        background_color: "#f9fafb",
+        surface_color: "#ffffff",
+        text_color: "#1f2937",
+        primary_color: "#15803d",
+        secondary_color: "#166534",
+        font_family: "Source Sans 3",
+        font_size: 16,
+      };
+
+      function applyConfig(config) {
+        const c = { ...defaultConfig, ...config };
+        document.getElementById("header-title").textContent = c.site_title;
+        document.getElementById("header-subtitle").textContent =
+          c.site_subtitle;
+        document.getElementById("hero-heading").textContent = c.hero_heading;
+        document.getElementById("hero-subheading").textContent =
+          c.hero_subheading;
+        document.getElementById("footer-text").textContent = c.footer_text;
+
+        document.body.style.backgroundColor = c.background_color;
+        document.body.style.color = c.text_color;
+        document.body.style.fontFamily = `${c.font_family}, 'Source Sans 3', sans-serif`;
+
+        const baseSize = c.font_size || 16;
+        document.getElementById("hero-heading").style.fontSize =
+          `${baseSize * 2.5}px`;
+        document.getElementById("hero-subheading").style.fontSize =
+          `${baseSize * 1.2}px`;
+      }
+
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () =>
+                config.background_color || defaultConfig.background_color,
+              set: (v) => {
+                config.background_color = v;
+                window.elementSdk.setConfig({ background_color: v });
+              },
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (v) => {
+                config.surface_color = v;
+                window.elementSdk.setConfig({ surface_color: v });
+              },
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (v) => {
+                config.text_color = v;
+                window.elementSdk.setConfig({ text_color: v });
+              },
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (v) => {
+                config.primary_color = v;
+                window.elementSdk.setConfig({ primary_color: v });
+              },
+            },
+            {
+              get: () =>
+                config.secondary_color || defaultConfig.secondary_color,
+              set: (v) => {
+                config.secondary_color = v;
+                window.elementSdk.setConfig({ secondary_color: v });
+              },
+            },
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => {
+              config.font_family = v;
+              window.elementSdk.setConfig({ font_family: v });
+            },
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => {
+              config.font_size = v;
+              window.elementSdk.setConfig({ font_size: v });
+            },
+          },
+        }),
+        mapToEditPanelValues: (config) =>
+          new Map([
+            ["site_title", config.site_title || defaultConfig.site_title],
+            [
+              "site_subtitle",
+              config.site_subtitle || defaultConfig.site_subtitle,
+            ],
+            ["hero_heading", config.hero_heading || defaultConfig.hero_heading],
+            [
+              "hero_subheading",
+              config.hero_subheading || defaultConfig.hero_subheading,
+            ],
+            ["footer_text", config.footer_text || defaultConfig.footer_text],
+          ]),
+      });
+
+      // Init Data SDK
+      (async () => {
+        const result = await window.dataSdk.init(dataHandler);
+        if (!result.isOk) console.error("Data SDK init failed");
+      })();
+
+      lucide.createIcons();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9f4806f720dcba4f',t:'MTc3NzU2NzYzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
